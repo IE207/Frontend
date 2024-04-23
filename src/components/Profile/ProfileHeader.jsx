@@ -5,9 +5,13 @@ import {
   VStack,
   Text,
   Button,
+  useDisclosure
 } from "@chakra-ui/react";
+import EditProfile from "./EditProfile";
 
 const ProfileHeader = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <Flex
       gap={{ base: 4, sm: 10 }}
@@ -21,9 +25,9 @@ const ProfileHeader = () => {
         mx={"auto"}
       >
         <Avatar
-          name="As a Programmer"
+          name="Love Cooking"
           src="/profilepic.png"
-          alt="As a programmer logo"
+          alt="Love Cooking logo"
         />
       </AvatarGroup>
 
@@ -43,6 +47,7 @@ const ProfileHeader = () => {
               color={"black"}
               _hover={{ bg: "gray.400" }}
               size={{ base: "xs", md: "sm" }}
+              onClick={onOpen}
             >
               Edit Profile
             </Button>
@@ -77,6 +82,8 @@ const ProfileHeader = () => {
         </Flex>
         <Text fontSize={"sm"}>A person that loves cooking.</Text>
       </VStack>
+
+      {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
     </Flex>
   );
 };

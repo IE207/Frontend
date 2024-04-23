@@ -76,7 +76,7 @@ const PostFooter = ({ username, isProfilePage }) => {
               color={"blue.500"}
               fontWeight={600}
               cursor={"pointer"}
-              _hover={{ color: "white" }}
+              _hover={{ color: "blue.800" }}
               bg={"transparent"}
             >
               Post
