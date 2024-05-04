@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PageLayout from "./Layouts/PageLayout/PageLayout";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import NotificationsPage from "./pages/NotificationsPage/NotificationsPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/:username" element={<ProfilePage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
 
       </Routes>
     </PageLayout>

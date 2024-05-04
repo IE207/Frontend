@@ -1,6 +1,7 @@
 import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [inputs, setInputs] = useState({
@@ -56,14 +57,8 @@ const Signup = () => {
         </InputRightElement>
       </InputGroup>
 
-      <Button
-        w={"full"}
-        colorScheme="blue"
-        size={"sm"}
-        fontSize={14}
-        
-      >
-        Sign Up
+      <Button w={"full"} colorScheme="blue" size={"sm"} fontSize={14}>
+        <Link to={"/"}>Sign Up</Link>
       </Button>
     </>
   );

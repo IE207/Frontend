@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  Input,
-  VStack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Image, VStack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -18,13 +10,12 @@ const AuthForm = () => {
 
   return (
     <>
-      <Box border={"1px solid gray"} borderRadius={4} padding={5}>
+      <Box borderRadius={4} padding={5} maxW={350}>
         <VStack spacing={4}>
-          <Image src="/logo.png" h={24} cursor={"pointer"} alt="Instagram" />
+          <Image src="/logo.png" h={28} cursor={"pointer"} alt="Instagram" />
 
           {isLogin ? <Login /> : <Signup />}
 
-          {/* OR text */}
           <Flex
             alignItems={"center"}
             justifyContent={"center"}
@@ -44,7 +35,7 @@ const AuthForm = () => {
         </VStack>
       </Box>
 
-      <Box border={"1px solid gray"} borderRadius={4} padding={5}>
+      <Box padding={5} maxW={350}>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Box mx={2} fontSize={14}>
             {isLogin ? "Don't have an account?" : "Already have an account?"}

@@ -123,8 +123,8 @@ export const ReelsLogo = () => (
 export const MessagesLogo = () => (
 	<svg
 		aria-label='Messenger'
-		color='rgb(245, 245, 245)'
-		fill='rgb(245, 245, 245)'
+		color='rgb(0, 0, 0)'
+		fill='rgb(0, 0, 0)'
 		height='24'
 		role='img'
 		viewBox='0 0 24 24'

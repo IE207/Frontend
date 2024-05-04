@@ -1,7 +1,7 @@
 import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -42,7 +42,7 @@ const Login = () => {
       </InputGroup>
 
       <Button w={"full"} colorScheme="blue" size={"sm"} fontSize={14}>
-        Log in
+        <Link to={"/"}>Log in</Link>
       </Button>
     </>
   );
