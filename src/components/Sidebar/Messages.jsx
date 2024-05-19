@@ -1,5 +1,6 @@
-import { Box, Flex, Tooltip } from "@chakra-ui/react";
+import { Box, Tooltip, Link } from "@chakra-ui/react";
 import { MessagesLogo } from "../../assets/constants";
+import { Link as RouterLink } from "react-router-dom";
 
 const Messages = () => {
   return (
@@ -11,7 +12,10 @@ const Messages = () => {
       openDelay={500}
       display={{ base: "block", md: "none" }}
     >
-      <Flex
+      <Link
+        display={"flex"}
+        to={`/messages`}
+        as={RouterLink}
         alignItems={"center"}
         gap={4}
         _hover={{ bg: "gray.200" }}
@@ -22,7 +26,7 @@ const Messages = () => {
       >
         <MessagesLogo />
         <Box display={{ base: "none", md: "block" }}>Messages</Box>
-      </Flex>
+      </Link>
     </Tooltip>
   );
 };
