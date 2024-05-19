@@ -2,7 +2,9 @@ import { Avatar, Flex, VStack, Box, HStack } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { BsFillRecordFill } from "react-icons/bs";
 
-const MessagesDetailHeader = ({ isOnline }) => {
+const MessagesDetailHeader = ({ selectedMessage }) => {
+  const { name, avatar, isOnline } = selectedMessage;
+
   return (
     <Flex
       justifyContent={"space-between"}
@@ -13,12 +15,16 @@ const MessagesDetailHeader = ({ isOnline }) => {
       borderColor={"gray.300"}
     >
       <Flex alignItems={"center"} gap={2}>
-        <Avatar name="Louis Pat" src="/sguser-1.png" size={"md"} />
+        <Avatar name={name} src={avatar} size={"md"} alt={`${name}'s avatar`} />
         <VStack spacing={2} alignItems={"flex-start"}>
           <Box fontSize={20} fontWeight={"bold"}>
-            Louis Pat
+            {name}
           </Box>
-          <HStack spacing={1} fontSize={14} color="gray.500" alignItems="center"
+          <HStack
+            spacing={1}
+            fontSize={14}
+            color="gray.500"
+            alignItems="center"
           >
             <Box color={isOnline ? "green.500" : "red.500"}>
               <BsFillRecordFill />

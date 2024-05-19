@@ -1,6 +1,6 @@
 import { Avatar, Flex, VStack, Box, Text } from "@chakra-ui/react";
 
-const MessagesElement = ({ name, messages, avatar, time }) => {
+const MessagesElement = ({ name, messages, avatar, time, onClick }) => {
   return (
     <Flex
       justifyContent={"space-between"}
@@ -10,6 +10,7 @@ const MessagesElement = ({ name, messages, avatar, time }) => {
       cursor={"pointer"}
       _hover={{ bg: "gray.200" }}
       borderRadius={10}
+      onClick={onClick}
     >
       <Flex alignItems={"center"} gap={2}>
         <Avatar src={avatar} name={name} size={"md"} />
