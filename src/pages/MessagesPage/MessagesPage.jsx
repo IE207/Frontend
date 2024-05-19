@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import MessagesList from "./MessagesList";
 import MessagesDetail from "./MessagesDetail";
 import { useState, useEffect } from "react";
@@ -28,13 +28,28 @@ const sampleMessages = [
 ];
 
 const MessagesPage = () => {
-  const [selectedMessage, setSelectedMessage] = useState(
-    sampleMessages.length > 0 ? sampleMessages[0] : null
-  );
+  const [messages] = useState(sampleMessages);
+  const [selectedMessage, setSelectedMessage] = useState(sampleMessages[0]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleItemClick = (message) => {
     setSelectedMessage(message);
   };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+    const foundMessage = messages.find((message) =>
+      message.name.toLowerCase().includes(term.toLowerCase())
+    );
+    if (foundMessage) {
+      setSelectedMessage(foundMessage);
+    }
+  };
+
+  const filteredMessages = messages.filter((message) =>
+    message.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
 
   return (
     <Container maxW="container.lg" h="100vh" p={0}>
@@ -50,8 +65,9 @@ const MessagesPage = () => {
           top={0}
         >
           <MessagesList
-            messages={sampleMessages}
+            messages={filteredMessages}
             onItemClick={handleItemClick}
+            onSearch={handleSearch}
           />
         </Box>
         <Box flex={2} h="full">

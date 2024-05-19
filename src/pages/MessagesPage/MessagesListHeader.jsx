@@ -1,16 +1,25 @@
 import {
   Flex,
   Text,
-  Button,
   InputGroup,
   InputLeftElement,
   Input,
   Box,
 } from "@chakra-ui/react";
-import { AddIcon, SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 import { BsPlusCircleFill } from "react-icons/bs";
+import { useState } from "react";
 
-const MessagesListHeader = () => {
+
+const MessagesListHeader = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      onSearch(searchTerm);
+    }
+  };
+
   return (
     <>
       <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
@@ -27,7 +36,11 @@ const MessagesListHeader = () => {
           <InputLeftElement pointerEvents="none">
             <SearchIcon color="gray.500" />
           </InputLeftElement>
-          <Input placeholder="Search" />
+          <Input
+            placeholder="Search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
         </InputGroup>
       </Flex>
     </>

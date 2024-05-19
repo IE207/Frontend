@@ -1,11 +1,15 @@
-import { Box, Button, Container, Flex, VStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import MessagesListHeader from "./MessagesListHeader";
 import MessagesElement from "./MessagesElement";
+import { useState } from "react";
 
-const MessagesList = ({ messages, onItemClick }) => {
+
+const MessagesList = ({ messages, onItemClick, onSearch }) => {
+  
+
   return (
     <Box height={"100vh"} top={0} position={"sticky"}>
-      <MessagesListHeader />
+      <MessagesListHeader onSearch={onSearch} />
 
       {messages.map((message, index) => (
         <MessagesElement
