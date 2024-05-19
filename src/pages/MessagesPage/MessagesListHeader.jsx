@@ -10,13 +10,20 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { useState } from "react";
 
-
 const MessagesListHeader = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       onSearch(searchTerm);
+    }
+  };
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    if (value === "") {
+      onSearch("");
     }
   };
 
@@ -38,7 +45,8 @@ const MessagesListHeader = ({ onSearch }) => {
           </InputLeftElement>
           <Input
             placeholder="Search"
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            onChange={handleChange}
             onKeyPress={handleKeyPress}
           />
         </InputGroup>

@@ -43,6 +43,8 @@ const MessagesPage = () => {
     );
     if (foundMessage) {
       setSelectedMessage(foundMessage);
+    } else if (term === "") {
+      setSelectedMessage(messages[0]);
     }
   };
 
