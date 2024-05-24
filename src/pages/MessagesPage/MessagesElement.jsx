@@ -19,13 +19,15 @@ const MessagesElement = ({ name, messages, avatar, time, onClick }) => {
             {name}
           </Box>
           <Box fontSize={14} color={"gray.500"}>
-            {messages}
+            {messages.length > 0
+              ? messages[messages.length - 1].text
+              : "No messages yet"}
           </Box>
         </VStack>
       </Flex>
 
       <Text fontSize={13} color={"gray.500"} p={0} mt={"auto"}>
-        {time}
+        {messages.length > 0 ? messages[messages.length - 1].time : ""}
       </Text>
     </Flex>
   );

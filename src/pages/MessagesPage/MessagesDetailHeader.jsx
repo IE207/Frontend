@@ -15,7 +15,7 @@ const MessagesDetailHeader = ({ selectedMessage }) => {
       borderColor={"gray.300"}
     >
       <Flex alignItems={"center"} gap={2}>
-        <Avatar name={name} src={avatar} size={"md"} alt={`${name}'s avatar`} />
+        <Avatar name={name} src={avatar} size={"md"} />
         <VStack spacing={2} alignItems={"flex-start"}>
           <Box fontSize={20} fontWeight={"bold"}>
             {name}

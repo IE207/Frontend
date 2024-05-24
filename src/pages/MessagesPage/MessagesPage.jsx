@@ -1,35 +1,40 @@
 import { Box, Container, Flex } from "@chakra-ui/react";
 import MessagesList from "./MessagesList";
 import MessagesDetail from "./MessagesDetail";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import MessagesListHeader from "./MessagesListHeader";
 
 const sampleMessages = [
   {
     name: "Louis Pat",
-    messages: "I wanna tell you...",
+    messages: [
+      { text: "I wanna tell you...", time: "1h ago", sender: "Louis Pat" },
+      { text: "How are you?", time: "50m ago", sender: "You" },
+    ],
     avatar: "/sguser-1.png",
-    time: "1h ago",
     isOnline: true,
   },
   {
     name: "Oliv Swan",
-    messages: "I wanna tell you...",
+    messages: [
+      { text: "I wanna tell you...", time: "1d ago", sender: "Oliv Swan" },
+    ],
     avatar: "/sguser-2.png",
-    time: "1d ago",
     isOnline: false,
   },
   {
     name: "Chauz Chauz",
-    messages: "I wanna tell you...",
+    messages: [
+      { text: "I wanna tell you...", time: "1d ago", sender: "Chauz Chauz" },
+    ],
     avatar: "/sguser-3.png",
-    time: "1d ago",
     isOnline: false,
   },
 ];
 
 const MessagesPage = () => {
-  const [messages] = useState(sampleMessages);
-  const [selectedMessage, setSelectedMessage] = useState(sampleMessages[0]);
+  const [messages, setMessages] = useState(sampleMessages);
+  const [selectedMessage, setSelectedMessage] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleItemClick = (message) => {
@@ -38,24 +43,51 @@ const MessagesPage = () => {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-    const foundMessage = messages.find((message) =>
-      message.name.toLowerCase().includes(term.toLowerCase())
-    );
-    if (foundMessage) {
-      setSelectedMessage(foundMessage);
-    } else if (term === "") {
-      setSelectedMessage(messages[0]);
+  };
+
+  const handleSendMessage = (text) => {
+    if (selectedMessage) {
+      const updatedMessages = messages.map((msg) => {
+        if (msg.name === selectedMessage.name) {
+          return {
+            ...msg,
+            messages: [
+              ...msg.messages,
+              { text, time: "just now", sender: "You" },
+            ],
+          };
+        }
+        return msg;
+      });
+      setMessages(updatedMessages);
+      setSelectedMessage({
+        ...selectedMessage,
+        messages: [
+          ...selectedMessage.messages,
+          { text, time: "just now", sender: "You" },
+        ],
+      });
     }
   };
 
-  const filteredMessages = messages.filter((message) =>
-    message.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const handleNewChat = () => {
+    const newChat = {
+      name: `New Chat ${messages.length + 1}`,
+      messages: [],
+      avatar: "/sguser-3.png",
+      isOnline: false,
+    };
+    setMessages([newChat, ...messages]);
+    setSelectedMessage(newChat);
+  };
+
+  const filteredMessages = messages.filter((msg) =>
+    msg.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
   return (
-    <Container maxW="container.lg" h="100vh" p={0}>
-      <Flex h="full">
+    <Container maxW="container.lg" p={0}>
+      <Flex>
         <Box
           flex={1}
           display={{ base: "none", lg: "block" }}
@@ -70,10 +102,14 @@ const MessagesPage = () => {
             messages={filteredMessages}
             onItemClick={handleItemClick}
             onSearch={handleSearch}
+            onNewChat={handleNewChat}
           />
         </Box>
         <Box flex={2} h="full">
-          <MessagesDetail selectedMessage={selectedMessage} />
+          <MessagesDetail
+            selectedMessage={selectedMessage}
+            onSendMessage={handleSendMessage}
+          />
         </Box>
       </Flex>
     </Container>

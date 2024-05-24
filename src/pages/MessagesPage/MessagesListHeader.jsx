@@ -10,7 +10,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { useState } from "react";
 
-const MessagesListHeader = ({ onSearch }) => {
+const MessagesListHeader = ({ onSearch, onNewChat }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleKeyPress = (event) => {
@@ -33,7 +33,7 @@ const MessagesListHeader = ({ onSearch }) => {
         <Text fontSize={24} fontWeight={"bold"}>
           Messages
         </Text>
-        <Box fontSize={32} cursor={"pointer"}>
+        <Box fontSize={32} cursor={"pointer"} onClick={onNewChat}>
           <BsPlusCircleFill />
         </Box>
       </Flex>
